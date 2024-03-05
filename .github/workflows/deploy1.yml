@@ -1,8 +1,8 @@
-name: deployment
+name: deployment1
 on:
   push
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -12,6 +12,7 @@ jobs:
       - name: Lint
         run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -20,7 +21,8 @@ jobs:
         run: npm ci
       - name: Test Code
         run: npm run test
-  deploy1:
+  deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
