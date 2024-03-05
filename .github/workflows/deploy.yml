@@ -1,8 +1,11 @@
 name: deployment
 on:
   pull_request:
-    types: opened
-  workflow_dispatch:    
+    types: 
+      - opened
+    branches:
+      - master  
+  workflow_dispatch:   
 jobs:
   deploy:
     runs-on: ubuntu-latest
